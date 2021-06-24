@@ -6,7 +6,7 @@ use crate::{
 use ndarray::prelude::*;
 use num::ToPrimitive;
 use std::io::{Result, Write};
-use tangram_zip::zip;
+use itertools::izip;
 
 pub struct Screen {
 	terminal: Terminal,
@@ -162,7 +162,7 @@ impl Screen {
 			let mut new_buffer = Array::from_elem((new_rows, new_cols), Cell::default());
 			let common_rows = new_rows.min(old_rows);
 			let common_cols = new_cols.min(old_cols);
-			for (new, old) in zip!(
+			for (new, old) in izip!(
 				new_buffer.slice_mut(s![0..common_rows, 0..common_cols]),
 				self.buffer.slice(s![0..common_rows, 0..common_cols]),
 			) {
