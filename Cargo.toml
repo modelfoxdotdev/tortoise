@@ -1,13 +1,13 @@
 [package]
-authors = ["Tangram <root@tangram.xyz"]
+authors = ["Tangram <root@tangram.dev"]
 description = "Build terminal user interfaces in Rust."
 documentation = "https://docs.rs/tortoise"
 edition = "2018"
-homepage = "https://github.com/tangramxyz/tortoise"
+homepage = "https://github.com/tangramdotdev/tortoise"
 license = "MIT"
 name = "tortoise"
 publish = true
-repository = "https://github.com/tangramxyz/tortoise"
+repository = "https://github.com/tangramdotdev/tortoise"
 version = "0.1.0"
 
 [lib]
