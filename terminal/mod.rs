@@ -44,6 +44,18 @@ impl Terminal {
 		})
 	}
 
+	/// Create a new terminal, which outputs to `stderr`.
+	#[cfg(unix)]
+	pub fn new_stderr() -> Result<Self> {
+		let buffer = Vec::with_capacity(BUFFER_SIZE);
+		let inner = TerminalInner::new_stderr()?;
+		Ok(Self {
+			cursor_hidden: false,
+			buffer,
+			inner,
+		})
+	}
+
 	/// get the current size of the terminal as (rows, cols)
 	pub fn size(&self) -> Result<(u16, u16)> {
 		self.inner.size()

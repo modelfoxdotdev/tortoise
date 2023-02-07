@@ -31,6 +31,18 @@ impl Terminal {
 		})
 	}
 
+	pub fn new_stderr() -> Result<Self> {
+		let tty_fd = unsafe { libc::open("/dev/stderr\0".as_ptr() as *const c_char, libc::O_RDWR) };
+		if tty_fd == -1 {
+			return Err(std::io::Error::last_os_error());
+		}
+		Ok(Self {
+			fd_set: None,
+			saved_termios: None,
+			tty_fd,
+		})
+	}
+
 	pub fn size(&self) -> Result<(u16, u16)> {
 		let mut sz = std::mem::MaybeUninit::uninit();
 		let err = unsafe { libc::ioctl(self.tty_fd, libc::TIOCGWINSZ, sz.as_mut_ptr()) };
